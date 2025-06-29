@@ -1,0 +1,25 @@
+<div class="card my-5 p-2">
+    <div class="card-header">Featured</div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <table class="table table-bordered table-striped table-hover text-center">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Books</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dashboar of bookResponseModal; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ dashboar.Name }}</td>
+            <td>{{ dashboar.Age }}</td>
+            <td>{{ dashboar.Books }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

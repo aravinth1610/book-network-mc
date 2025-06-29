@@ -1,0 +1,39 @@
+<configuration>
+
+   <springProperty name="springAppName" source="spring.application.name" defaultValue="unknown"/>
+
+    <!-- Enable color and exception handling -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+
+    <!-- Console Logging -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy/MM/dd hh:mm:ss.SSSXXX a} %clr(%-5level) %magenta([PID] ID: ${PID:- }) [${springAppName}] [%thread] [traceId=%X{traceId}, spanId=%X{spanId}] %cyan(%logger{46}) : %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Loki Logging -->
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+        <http>
+            <url>http://localhost:3100/loki/api/v1/push</url>
+        </http>
+        <format>
+            <label>
+                <pattern>app=${springAppName}, environment=production, region=eu-west-1, level=%level</pattern>
+                <readMarkers>true</readMarkers>
+            </label>
+            <message>
+                <pattern>%d{yyyy/MM/dd hh:mm:ss.SSSXXX a} %clr(%-5level) %magenta([PID] ID: ${PID:- }) [${springAppName}] [%thread] %cyan(%logger{46}) : %msg%n</pattern>
+            </message>
+        </format>
+    </appender>
+
+    <!-- Root Logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="LOKI"/>
+    </root>
+
+</configuration>
