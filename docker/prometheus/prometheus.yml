@@ -7,21 +7,21 @@ scrape_configs:
     metrics_path: '/actuator/prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['e-security:8080']
+      - targets: ['esecurity:8080']
         labels:
           application: 'esecurity'
   - job_name: 'book-network'
     metrics_path: '/actuator/prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['book-services:8080']
+      - targets: ['book-network:8080']
         labels:
           application: 'book-network'          
   - job_name: 'book-inventory'
     metrics_path: '/actuator/prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['book-inventory-services:8080']
+      - targets: ['book-inventory:8080']
         labels:
           application: 'book-inventory'
           

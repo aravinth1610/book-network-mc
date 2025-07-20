@@ -80,7 +80,7 @@ public class DynamicAuthorizationManager implements AuthorizationManager<Request
 	                    .map(permission -> {
 	                    	System.out.println(permission.getApiEndPoint()+"===="+permission.getCanActivate());
 	                      
-	                    	if (permission.getCanActivate() == null) {
+	                    	if (permission.getCanActivate() == null || permission.getCanActivate().isBlank()) {
 	                        	 return new AuthorizationDecision(true);
 	                        }
 	                    

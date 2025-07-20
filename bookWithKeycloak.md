@@ -1,3 +1,7 @@
+## Docker Command  
+
+Go Inside the Container : docker exec -it <container_name> /bin/sh  
+
 # Book MicroServices Documentation
 
 This is Demo Book Application, Just a Use of MicroServices architecture,  we Use seperate Esecurity with Keycloak for Authentication and **Role** and **User** Based Authorization and also with Gateway.  
@@ -205,6 +209,11 @@ mvn compile jib:dockerBuild
 Gatways this will be different for projects, So, we can make to call the Esecurity API and validate the Token and give Response to the USER.
 
 
+
+## Shell Script for Docker Clean (Vloumns and docker health Check)
+chmod +x restart-clean.sh
+
+./restart-clean.sh
 
 
 
