@@ -45,7 +45,7 @@ public class KeycloakSecurityUtil {
 	}
 
 	public Keycloak getKeycloakInstance() {
-		System.out.println("--------------KC");
+		System.out.println("--------------KC"+serverUrl+"=="+"realm::"+realm);
 		return KeycloakBuilder.builder().serverUrl(serverUrl).grantType(OAuth2Constants.CLIENT_CREDENTIALS)
 				.realm(realm).clientId(clientId).clientSecret(clientSecret).build();
 	}
