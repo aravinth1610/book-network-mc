@@ -59,11 +59,6 @@ services:
       DB_PASSWORD: 12345678
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-      KC_HOSTNAME: keycloak
-      KC_HOSTNAME_STRICT: "false"
-      KC_HOSTNAME_STRICT_HTTPS: "false"
-      KC_HTTP_ENABLED: "true"
-      KC_HOSTNAME_URL: http://localhost:8080
     command: 
       - "start-dev"
       - "--import-realm" 
@@ -109,59 +104,59 @@ services:
     networks:
       - app_network
 
-  # # API Gateway
-  # apigateway:
-  #   image: aravinth1610/book_network_gateway:0.0.1
-  #   container_name: apigateway
-  #   restart: unless-stopped
-  #   ports: 
-  #     - "8181:8080"
-  #   environment:
-  #     SPRING_PROFILES_ACTIVE: docker
-  #     LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: TRACE
-  #   depends_on:
-  #     - discovery-server
-  #     - keycloak
-  #   #   discovery-server:
-  #   #     condition: service_healthy
-  #   #   keycloak:
-  #   #     condition: service_healthy
-  #   # healthcheck:
-  #   #   test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-  #   #   interval: 5s
-  #   #   timeout: 5s
-  #   #   retries: 10
-  #   networks:
-  #     - app_network
+  # API Gateway
+  apigateway:
+    image: aravinth1610/book_network_gateway:0.0.1
+    container_name: apigateway
+    restart: unless-stopped
+    ports: 
+      - "8181:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: TRACE
+    depends_on:
+      - discovery-server
+      - keycloak
+    #   discovery-server:
+    #     condition: service_healthy
+    #   keycloak:
+    #     condition: service_healthy
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+    #   interval: 5s
+    #   timeout: 5s
+    #   retries: 10
+    networks:
+      - app_network
 
-  # # E-Security
-  # esecurity:
-  #   image: aravinth1610/esecurity:0.0.1
-  #   container_name: esecurity
-  #   restart: unless-stopped
-  #   environment:
-  #     SPRING_PROFILES_ACTIVE: docker
-  #     LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: TRACE
-  #     esecurity.realm: network
-  #     esecurity.serverURI: http://keycloak:8080
-  #   depends_on:
-  #     - discovery-server
-  #     - bookmariadb
-  #     - apigateway
-  #   # depends_on:
-  #   #   discovery-server:
-  #   #     condition: service_healthy
-  #   #   keycloak:
-  #   #     condition: service_healthy
-  #   #   bookmariadb:
-  #   #     condition: service_healthy
-  #   # healthcheck:
-  #   #   test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-  #   #   interval: 10s
-  #   #   timeout: 5s
-  #   #   retries: 10
-  #   networks:
-  #     - app_network
+  # E-Security
+  esecurity:
+    image: aravinth1610/esecurity:0.0.1
+    container_name: esecurity
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY: TRACE
+      esecurity.realm: network
+      esecurity.serverURI: http://keycloak:8080
+    depends_on:
+      - discovery-server
+      - bookmariadb
+      - apigateway
+    # depends_on:
+    #   discovery-server:
+    #     condition: service_healthy
+    #   keycloak:
+    #     condition: service_healthy
+    #   bookmariadb:
+    #     condition: service_healthy
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 10
+    networks:
+      - app_network
 
   # # Book service
   # book-network:

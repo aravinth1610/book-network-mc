@@ -2,6 +2,15 @@
 
 Go Inside the Container : docker exec -it <container_name> /bin/sh  
 
+## HOST IN LOCAL (No need to do in Prod) For Keycloak
+
+sudo nano /etc/hosts
+
+Add 127.0.0.1 keycloak
+
+Ctrl + O to save, then Enter, then Ctrl + X to exit.
+http://keycloak:8080/realms/<Realm>/protocol/openid-connect/token (Need to use this token Generation)
+
 # Book MicroServices Documentation
 
 This is Demo Book Application, Just a Use of MicroServices architecture,  we Use seperate Esecurity with Keycloak for Authentication and **Role** and **User** Based Authorization and also with Gateway.  
