@@ -27,6 +27,7 @@
             <message>
                 <pattern>%d{yyyy/MM/dd hh:mm:ss.SSSXXX a} %clr(%-5level) %magenta([PID] ID: ${PID:- }) [${springAppName}] [%thread] %cyan(%logger{46}) : %msg%n</pattern>
             </message>
+       <sortByTime>true</sortByTime>
         </format>
     </appender>
 

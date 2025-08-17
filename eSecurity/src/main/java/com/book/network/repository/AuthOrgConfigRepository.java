@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import com.book.network.modal.AuthOrgConfig;
 
+import io.micrometer.observation.annotation.Observed;
 import jakarta.persistence.QueryHint;
 
 @Repository
+@Observed
 public interface AuthOrgConfigRepository extends JpaRepository<AuthOrgConfig, Long> {
 
 	@QueryHints({ @QueryHint(name = "org.hibernate.readOnly", value = "true"),

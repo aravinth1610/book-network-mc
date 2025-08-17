@@ -10,9 +10,11 @@ import org.springframework.stereotype.Repository;
 
 import com.book.network.modal.Roles;
 
+import io.micrometer.observation.annotation.Observed;
 import jakarta.persistence.QueryHint;
 
 @Repository
+@Observed
 public interface RolesRepository extends JpaRepository<Roles, Long> {
 	
 	@QueryHints({ @QueryHint(name = "org.hibernate.readOnly", value = "true"),

@@ -33,10 +33,18 @@ public class BookServices {
 	public Map<String, Object> bookInv() {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/json");
-		webClientcalls.makeAPIClientCalls("lb://bookInventory/bookInventory/", "", Map.class, httpHeaders, "GET");
+		String API = "lb://bookInventory/bookInventory/";
+		Map<String, Object> data = null;
+		try {
+			data = webClientcalls.makeAPIClientCalls("http://localhost:9999/book/details", "", Map.class, httpHeaders, "GET");
+			System.out.println("----------"+data.toString());
+		
+		}catch (Exception e) {
+			System.out.println("Error--: "+e.getMessage());
+		}
 		//System.out.println(bookInventoy);
 
-		return null;
+		return data;
 	}
 
 //	public Map bookInvAsync() throws InterruptedException, ExecutionException  {
