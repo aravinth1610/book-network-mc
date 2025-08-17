@@ -1,25 +1,28 @@
 global:
-  scrape_interval: 10s
-  evaluation_interval: 10s
+  scrape_interval: 2s
+  evaluation_interval: 2s
 
 scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['prometheus:9090']
   - job_name: 'esecurity'
     metrics_path: '/actuator/prometheus'
-    scrape_interval: 5s
+    scrape_interval: 2s
     static_configs:
       - targets: ['esecurity:8080']
         labels:
           application: 'esecurity'
   - job_name: 'book-network'
     metrics_path: '/actuator/prometheus'
-    scrape_interval: 5s
+    scrape_interval: 2s
     static_configs:
       - targets: ['book-network:8080']
         labels:
           application: 'book-network'          
   - job_name: 'book-inventory'
     metrics_path: '/actuator/prometheus'
-    scrape_interval: 5s
+    scrape_interval: 2s
     static_configs:
       - targets: ['book-inventory:8080']
         labels:

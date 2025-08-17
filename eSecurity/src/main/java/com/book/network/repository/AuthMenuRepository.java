@@ -10,9 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.book.network.modal.AuthRoutes;
 import com.book.network.repositoryDTO.SecurityConfigRepositoryDTO;
 
+import io.micrometer.observation.annotation.Observed;
 import jakarta.persistence.QueryHint;
 
 @Repository
+@Observed
 public interface AuthMenuRepository extends JpaRepository<AuthRoutes, Long> {
 
 	@QueryHints({ @QueryHint(name = "org.hibernate.readOnly", value = "true"),
